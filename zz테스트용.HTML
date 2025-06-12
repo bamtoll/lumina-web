@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>응원의 메시지</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('001im.jpg');
+      background-attachment: fixed;
+      background-size: cover;
+      color: black;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header, footer {
+      text-align: center;
+      padding: 0;
+    }
+
+    .logo {
+      padding: 14px;
+      text-align: center;
+      text-shadow:
+        1px 1px 2px #000,
+        0 0 2px #FF9E9B,
+        0 0 4px #FFA8A5,
+        0 0 6px #FFB2AF,
+        0 0 8px #FFBCB9,
+        0 0 10px #FFC6C3,
+        0 0 12px #FFD0CD,
+        0 0 14px #FFD5D2,
+        0 0 16px #FFDAD7,
+        0 0 18px #FFDFDC,
+        0 0 20px #FFE4E1;
+    }
+
+    .logo a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 55px;
+      font-family: "Rubik Glitch", system-ui;
+    }
+
+    nav ul {
+      list-style: none;
+      margin-top: 10px;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 50px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      font-size: 16px;
+      color: #fff;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    nav ul li a.active {
+      color: #FFB2AF;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover {
+      color: #FFB2AF;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h1 {
+      color: black;
+      margin-bottom: 30px;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    textarea {
+      resize: none;
+      height: 150px;
+      padding: 12px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px;
+      background-color: #FFB2AF;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #FF7A85;
+    }
+
+    footer {
+      text-align: center;
+      color: #aaa;
+      padding: 10px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="main.html">LUMINA</a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="shop.html">SHOP</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="works.html">WORKS</a></li>
+        <li><a href="schedule.html">SCHEDULE</a></li>
+        <li><a href="support.html" class="active">SUPPORT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>아티스트에게 메시지를 남겨주세요!</h1>
+      <form method="get" action="#">
+        <textarea name="message" placeholder="응원의 메시지를 작성해주세요" required></textarea>
+        <button type="submit">메시지 보내기</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 LUMINA Official. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+
+

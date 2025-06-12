@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LUMINA 이벤트</title>
+<style>
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f9f9f9;
+    color: #222;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    /*background-image: url('IMG04.jpg'); */
+    background-size: cover;       
+    background-position: center;  
+    background-repeat: no-repeat; 
+  }
+
+  header {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  header .logo {
+    font-weight: 700;
+    font-size: 40px;
+    color: #212529;
+    letter-spacing: 0.1em;
+  }
+    /*nav 안에 ul 가로정렬, 자간 고정*/
+  nav ul {
+    display: flex; /*가로 정렬*/
+    justify-content: center; /*가운데 정렬*/
+    gap: 40px; /*자간 고정*/
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+    }
+
+  nav ul li a {
+    color: #212529;
+    position: relative;  
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    }
+
+  /* 차르르 등장 */
+  nav ul li a:hover::after {
+    transform: scaleX(1);         
+    }
+
+  /*커서 올렸을 때 밑줄 차르르 등장*/
+  nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;                  /* 텍스트 아래에 줄 위치 */
+    width: 100%;
+    height: 2px;
+    background-color: #212529;      /* 밑줄 색 */
+    transform: scaleX(0);         /* 처음엔 안 보이게 */
+    transform-origin: left;       /* 왼쪽부터 시작 */
+    transition: transform 0.3s ease;
+    }
+
+  nav ul {
+    margin-top: 15px;
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+  }
+
+
+.active {
+  color: indianred;
+  position: relative; /* ::after의 절대 위치 기준 */
+}
+
+  main {
+    max-width: 1100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  /* 첫번째 섹션: 메인 이벤트 강조 영역 */
+  .main-event {
+    background: #212529;
+    color: white;
+    border-radius: 16px;
+    padding: 60px 40px;
+    box-shadow: 0 10px 30px rgba(233,78,119,0.4);
+    text-align: center;
+  }
+
+  .main-event h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.1;
+  }
+
+  .main-event p {
+    font-size: 21px;
+    margin-bottom: 30px;
+    opacity: 0.9;
+  }
+
+  .main-event a {
+    display: inline-block;
+    background: white;
+    color: #212529;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 14px 40px;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+     border: 2px solid transparent; /* 기본에 투명한 보더를 둠 */
+  }
+
+  .main-event a:hover {
+    background: #212529;
+    border: 2PX SOLID white;
+    border-radius: 40PX;
+    color: white;
+  }
+
+  /* 두번째 섹션: 달력 + 이벤트 리스트 (기존 스타일) */
+  .content-sections {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* 달력 */
+  .calendar {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    padding: 24px 32px;
+    flex-shrink: 0;
+    width: 320px;
+  }
+
+  .calendar .month {
+    font-weight: 700;
+    font-size: 26px;
+    margin-bottom: 25px;
+    color: #212529;
+    text-align: center;
+  }
+
+  .calendar .weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 16px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #888;
+  }
+
+  .calendar .weekdays div {
+    text-align: center;
+  }
+
+  .calendar .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+  }
+
+  .calendar .days div {
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 8px;
+    cursor: default;
+    font-weight: 600;
+    font-size: 16px;
+    color: #444;
+    user-select: none;
+    position: relative;
+  }
+
+  .calendar .days div.inactive {
+    color: #ccc;
+  }
+
+  .calendar .days div.event-day::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: #888;
+    border-radius: 50%;
+  }
+
+  /* 이벤트 리스트 */
+  .events {
+    flex: 1;
+    max-height: 520px;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 24px 32px;
+    border-radius: 12px;
+  }
+
+  .event-item {
+    border-bottom: 1px solid #eee;
+    padding: 16px 0;
+    transition: background-color 0.2s;
+  }
+
+  .event-item:last-child {
+    border-bottom: none;
+  }
+
+  .event-date {
+    color: #212529;
+    font-weight: 700;
+    font-size: 14px; 
+    margin-bottom: 6px;
+  }
+
+  .event-title {
+    font-weight: 600;
+    font-size: 20px; 
+    margin-bottom: 4px;
+    color: #333;
+  }
+
+  .event-time {
+    color: #777;
+    font-size: 14px; 
+  }
+
+  /* 스크롤 커스텀 */
+  .events::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .events::-webkit-scrollbar-thumb {
+    background-color: #212529;
+    border-radius: 10px;
+  }
+
+  .events::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
+  }
+
+  footer {
+    margin-top: 60px;
+    font-size: 13px; 
+    color: #aaa;
+    text-align: center;
+  }
+
+  /* 반응형 */
+  @media (max-width: 768px) {
+    main {
+      padding: 0 10px;
+    }
+    .content-sections {
+      flex-direction: column;
+      gap: 40px;
+    }
+    .calendar {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .events {
+      max-height: 400px;
+    }
+    .main-event h1 {
+      font-size: 37px; 
+    }
+  }
+</style>
+</head>
+<body>
+
+    <header>
+      <div class="logo">LUMINA</div>
+        <nav>
+            <ul>
+                <li><a href="main.html">HOME</a></li>
+                <li><a href="about.html">PROFILES</a></li>
+                <li><a href="works.html">WORKS</a></li>
+                <li><a href="schedule.html" class="active">SCHEDULE</a></li>
+                <li><a href="support.html">SUPPORT</a></li>
+                
+                <li><a href="shop.html">SHOP</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<main>
+
+  <br>
+
+  <!-- 메인 강조 이벤트 -->
+  <section class="main-event">
+    <h1>LUMINA The 1st Album 'RAIN DROP'<br>뮤직비디오 공개</h1>
+    <p>2025년 6월 18일 18:00</p>
+    <a href="event-main.html" target="_blank">자세히 보기</a>
+  </section>
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+  <!-- 달력 + 이벤트 리스트 -->
+  <section class="content-sections">
+    <section class="calendar">
+      <div class="month">2025년 6월</div>
+      <div class="weekdays">
+        <div style="color:#e57373;">Sun</div>
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div style="color:#64b5f6;">Sat</div>
+      </div>
+      <div class="days">
+        <div class="event-day">1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div class="event-day">5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div class="event-day">9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+        <div>13</div>
+        <div>14</div>
+        <div>15</div>
+        <div>16</div>
+        <div>17</div>
+        <div class="event-day">18</div>
+        <div>19</div>
+        <div>20</div>
+        <div>21</div>
+        <div>22</div>
+        <div>23</div>
+        <div>24</div>
+        <div>25</div>
+        <div>26</div>
+        <div>27</div>
+        <div>28</div>
+        <div>29</div>
+        <div>30</div>
+        <div class="inactive">1</div>
+        <div class="inactive">2</div>
+        <div class="inactive">3</div>
+        <div class="inactive">4</div>
+        <div class="inactive">5</div>
+      </div>
+    </section>
+
+    <section class="events">
+      <article class="event-item">
+        <div class="event-date">2025-06-01</div>
+        <div class="event-title">YouTube '인간극장' 채널 출연</div>
+        <div class="event-time">18:00</div>
+      </article>
+      <article class="event-item">
+        <div class="event-date">2025-06-05</div>
+        <div class="event-title">LUMINA 1TH TOUR 'LUMINA CITY : JAPAN' 2회 (TOKYO DOME) <a href="이벤트페이지/event5-1.html" target="_blank" style="color:#64b5f6; text-decoration: underline;">공지</a></div>
+        <div class="event-time">15:00</div>
+      </article>
+      <article class="event-item">
+        <div class="event-date">2025-06-09</div>
+        <div class="event-title">RIA The 1st Single [Day Dream] 음반 발매</div>
+        <div class="event-time">15:00</div>
+      </article>
+      <article class="event-item">
+        <div class="event-date">2025-06-09</div>
+        <div class="event-title">RIA The 1st Single [Day Dream] 전곡 음원 공개</div>
+        <div class="event-time">19:00</div>
+      </article>
+      <article class="event-item">
+        <div class="event-date">2025-06-18</div>
+        <div class="event-title">LUMINA The 1st Album 'RAIN DROP' 뮤직비디오 선공개</div>
+        <div class="event-time">18:00</div>
+      </article>
+    </section>
+  </section>
+  
+
+    <footer>
+        
+        <p>20251243임서현 20251246김나우 20251291장주연 20252361김지연</p>
+        <p>&copy; 2025 All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+
+

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUMINA 굿즈</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+      /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f9f9f9;
+    color: #222;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    background-size: cover;       
+    background-position: center;  
+    background-repeat: no-repeat; 
+  }
+
+  header {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  header .logo {
+    font-weight: 700;
+    font-size: 40px;
+    color: #212529;
+    letter-spacing: 0.1em;
+  }
+    /*nav 안에 ul 가로정렬, 자간 고정*/
+  nav ul {
+    display: flex; /*가로 정렬*/
+    justify-content: center; /*가운데 정렬*/
+    gap: 40px; /*자간 고정*/
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+    }
+
+  nav ul li a {
+    color: #212529;
+    position: relative;  
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    }
+
+  /* 차르르 등장 */
+  nav ul li a:hover::after {
+    transform: scaleX(1);         
+    }
+
+  /*커서 올렸을 때 밑줄 차르르 등장*/
+  nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;                  /* 텍스트 아래에 줄 위치 */
+    width: 100%;
+    height: 2px;
+    background-color: #212529;      /* 밑줄 색 */
+    transform: scaleX(0);         /* 처음엔 안 보이게 */
+    transform-origin: left;       /* 왼쪽부터 시작 */
+    transition: transform 0.3s ease;
+    }
+
+  nav ul {
+    margin-top: 15px;
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+  }
+
+
+  .active {
+    color: indianred;
+    position: relative; /* ::after의 절대 위치 기준 */
+  }
+
+  main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .goods-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .goods-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .goods-grid {
+      display: flex;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+     .goods-item {
+        width: 220px;              /* 가로 고정 */
+        height: 300px;             /* 세로 고정 */
+        padding: 16px;
+        box-sizing: border-box;    /* padding 포함해서 크기 유지 */
+        border-radius: 12px;
+        background-color: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* 내용물 사이 공간 균등 배치 */
+        text-align: center;
+      }
+    .goods-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .goods-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .goods-info {
+      padding: 0.5rem;
+    }
+
+    .goods-name {
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .goods-price {
+      color: indianred;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+   footer {
+      text-align: center;
+      color: #aaa;
+      padding: 100px 0;
+      font-size: 14px;
+  }
+  </style>
+</head>
+<body>
+    <header>
+      <div class="logo">LUMINA OFFICIAL GOODS</div>
+        <nav>
+            <ul>
+                <li><a href="main.html">HOME</a></li>
+                <li><a href="about.html">PROFILES</a></li>
+                <li><a href="works.html">WORKS</a></li>
+                <li><a href="schedule.html">SCHEDULE</a></li>
+                <li><a href="support.html">SUPPORT</a></li>
+                
+                <li><a href="shop.html" class="active">SHOP</a></li>
+            </ul>
+        </nav>
+    </header>
+
+  <main class="goods-container">
+    
+    <div class="goods-grid">
+      <div class="goods-item">
+        <img src="/shop_images/goods_tshirt.png" alt="티셔츠" class="goods-image" />
+        <div class="goods-info">
+          <p class="goods-name">LUMINA 로고 티셔츠</p>
+          <p class="goods-price">₩29,000</p>
+        </div>
+      </div>
+      <div class="goods-item">
+        <img src="/shop_images/goods_photocard.png" alt="포토카드 세트" class="goods-image" />
+        <div class="goods-info">
+          <p class="goods-name"><s><ruby>포토카드 세트 (랜덤)<rt>S O L D   O U T</rt></ruby></s></p>
+          <p class="goods-price"><s>₩9,000</s></p>
+        </div>
+      </div>
+      <div class="goods-item">
+        <img src="/shop_images/goods_keyring.png"  width="100" height="50"  alt="키링" class="goods-image" />
+        <div class="goods-info">
+          <p class="goods-name">LUMINA 키링</p>
+          <p class="goods-price">₩12,000</p>
+        </div>
+      </div>
+    </div>
+    
+  </main>
+  <br>
+  <br>
+
+    <footer>
+        <p>20251243임서현 20251246김나우 20251291장주연 20252361김지연</p>
+        <p>&copy; 2025 All rights reserved.</p>
+    </footer>
+</body>
+</html>
