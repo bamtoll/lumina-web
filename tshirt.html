@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>LUMINA 공식 굿즈샵 | 티셔츠 상세</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --main-color: indianred;
+      --accent-color: indianred;
+      --bg-box: #fff;
+      --border-box: #e4c8ff;
+      --shadow-box: 0 8px 32px rgba(205,92,92,0.10);
+      --radius-box: 32px;
+      --font-main: 'Noto Sans KR', Arial, Helvetica, sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-main);
+      background: #fff;
+      color: #222;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    header {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  header .logo {
+    font-weight: 700;
+    font-size: 40px;
+    color: #212529;
+    letter-spacing: 0.1em;
+  }
+    /*nav 안에 ul 가로정렬, 자간 고정*/
+  nav ul {
+    display: flex; /*가로 정렬*/
+    justify-content: center; /*가운데 정렬*/
+    gap: 40px; /*자간 고정*/
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+    }
+
+  nav ul li a {
+    color: #212529;
+    position: relative;  
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    }
+
+  /* 차르르 등장 */
+  nav ul li a:hover::after {
+    transform: scaleX(1);         
+    }
+
+  /*커서 올렸을 때 밑줄 차르르 등장*/
+  nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;                  /* 텍스트 아래에 줄 위치 */
+    width: 100%;
+    height: 2px;
+    background-color: #212529;      /* 밑줄 색 */
+    transform: scaleX(0);         /* 처음엔 안 보이게 */
+    transform-origin: left;       /* 왼쪽부터 시작 */
+    transition: transform 0.3s ease;
+    }
+
+  nav ul {
+    margin-top: 15px;
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+  }
+
+
+  .active {
+    color: indianred;
+    position: relative; /* ::after의 절대 위치 기준 */
+  }
+
+
+    main {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .product-detail {
+      max-width: 950px;
+      width: 100%;
+      background: var(--bg-box);
+      border-radius: var(--radius-box);
+      box-shadow: var(--shadow-box);
+      padding: 40px 36px 36px 36px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+    .product-main {
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+    }
+    .product-image {
+      width: 340px;
+      height: 340px;
+      object-fit: cover;
+      border-radius: 24px;
+      box-shadow: 0 2px 12px rgba(205,92,92,0.08);
+      border: 2px solid var(--border-box);
+      border-color: indianred;
+    }
+    .product-main figure {
+      margin: 0;
+      text-align: center;
+    }
+    .product-main figcaption {
+      color: #888;
+      font-size: 0.97rem;
+      margin-top: 8px;
+    }
+    .product-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .product-title {
+      font-size: 2.2rem;
+      color: var(--main-color);
+      margin-bottom: 8px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .product-price {
+      font-size: 1.4rem;
+      color: var(--accent-color);
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+    .product-info form {
+      margin-bottom: 10px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .product-info label {
+      font-size: 1rem;
+      color: #222;
+      margin-right: 4px;
+      font-weight: 500;
+    }
+    .product-info select, .product-info input[type="number"] {
+      font-size: 1rem;
+      padding: 7px 12px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border-box);
+      margin-right: 6px;
+      background: #faf6f6;
+    }
+    .product-info button {
+      background: linear-gradient(90deg, var(--main-color) 60%, #fff0f0 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.08rem;
+      font-weight: bold;
+      padding: 10px 24px;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 12px rgba(205,92,92,0.09);
+    }
+    .product-info button:hover {
+      background: linear-gradient(90deg, #fff0f0 10%, var(--main-color) 100%);
+      color: var(--main-color);
+    }
+    .product-summary {
+      margin-top: 8px;
+      color: #212529;
+      font-size: 1rem;
+      list-style: disc inside;
+    }
+    .product-summary li {
+      margin-bottom: 2px;
+    }
+    .product-desc, .product-policy, .product-contact, .product-faq {
+      margin-bottom: 16px;
+    }
+    .product-desc h2, .product-policy h2, .product-contact h2, .product-faq h2 {
+      font-size: 1.15rem;
+      color: var(--main-color);
+      margin-bottom: 6px;
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+    .product-desc p {
+      color: #555;
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+    }
+    .product-size {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      background: #faf6f6;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .product-size th, .product-size td {
+      border: 1px solid var(--border-box);
+      padding: 8px 12px;
+      text-align: center;
+    }
+    .product-size caption {
+      caption-side: top;
+      font-weight: bold;
+      color: var(--main-color);
+      margin-bottom: 4px;
+      padding: 4px;
+    }
+    .product-policy ul, .product-faq ul {
+      list-style: disc inside;
+      color: var(--accent-color);
+      font-size: 0.98rem;
+      margin-left: 10px;
+    }
+    .product-faq li {
+      margin-bottom: 6px;
+    }
+    
+    .product-progress {
+      margin: 18px 0 10px 0;
+      color: #212529;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    progress {
+      width: 220px;
+      height: 18px;
+      vertical-align: middle;
+      margin-left: 8px;
+      accent-color: var(--main-color);
+    }
+    details {
+      margin: 14px 0;
+      background: #f9f9fc;
+      border-radius: 8px;
+      padding: 10px 16px;
+      border: 1px solid #eee;
+      color: #444;
+    }
+    details summary {
+      font-weight: bold;
+      color: var(--main-color);
+      cursor: pointer;
+      margin-bottom: 4px;
+    }
+    
+    .faq-q {
+      font-weight: bold;
+      color: var(--main-color);
+      margin-right: 5px;
+    }
+    .faq-a {
+      color: #444;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #222;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">LUMINA OFFICIAL GOODS</div>
+      <nav>
+          <ul>
+              <li><a href="index.html">HOME</a></li>
+              <li><a href="about.html">PROFILES</a></li>
+              <li><a href="works.html">WORKS</a></li>
+              <li><a href="schedule.html">SCHEDULE</a></li>
+              <li><a href="support.html">SUPPORT</a></li>
+              
+              <li><a href="shop.html" class="active">SHOP</a></li>
+          </ul>
+      </nav>
+  </header>
+
+  <main>
+    <section class="product-detail">
+      <div class="product-main">
+        <figure>
+          <img src="goods_tshirt.png" alt="LUMINA 공식 티셔츠" class="product-image">
+          <figcaption>LUMINA 공식 티셔츠</figcaption>
+        </figure>
+        <div class="product-info">
+          <h1 class="product-title">LUMINA 공식 티셔츠</h1>
+          <p class="product-price"><strong>₩25,000</strong></p>
+          <form>
+            <label for="option">옵션:</label>
+            <select id="option" name="option">
+              <option>화이트 / S</option>
+              <option>화이트 / M</option>
+              <option>화이트 / L</option>
+              <option>블랙 / S</option>
+              <option>블랙 / M</option>
+              <option>블랙 / L</option>
+            </select>
+            <label for="qty">수량:</label>
+            <input type="number" id="qty" name="qty" min="1" value="1" style="width:60px;">
+            <button type="submit">장바구니 담기</button>
+          </form>
+          <ul class="product-summary">
+            <li>소재: 100% 면</li>
+            <li>사이즈: S, M, L</li>
+            <li>제조국: 대한민국</li>
+          </ul>
+          <div class="product-progress">
+            <span>판매량:</span>
+            <progress value="80" max="100"></progress>
+            <span>80%</span>
+          </div>
+        </div>
+      </div>
+      <section class="product-desc">
+        <h2>상품 상세 설명</h2>
+        <p>
+          <strong>LUMINA</strong>의 공식 굿즈 티셔츠!<br>
+          부드러운 면 소재와 트렌디한 디자인으로 팬심을 뽐내보세요.<br>
+          <strong>크기:</strong> S, M, L (상세 사이즈는 하단 표 참고)<br>
+          <mark>하단 크기 표를 반드시 확인하고 구매하세요!</mark>
+        </p>
+        <table class="product-size">
+          <caption>사이즈 안내</caption>
+          <thead>
+            <tr><th>사이즈</th><th>총장</th><th>가슴단면</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>S</td><td>65cm</td><td>48cm</td></tr>
+            <tr><td>M</td><td>69cm</td><td>52cm</td></tr>
+            <tr><td>L</td><td>73cm</td><td>55cm</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="product-policy">
+        <h2>배송/교환/환불 안내</h2>
+        <ul>
+          <li>배송기간: 영업일 기준 3~7일 소요</li>
+          <li>단순 변심 반품: 왕복 배송비 6,000원 고객 부담</li>
+          <li>상품 하자/오배송: 배송비 무료, 7일 이내 교환/환불 가능</li>
+          <li>교환/반품 신청: 마이페이지 또는 1:1 문의 이용</li>
+        </ul>
+      </section>
+      <section class="product-faq">
+        <h2>자주 묻는 질문</h2>
+        <ul>
+          <li><span class="faq-q">Q.</span><span class="faq-a">세탁은 어떻게 하나요?</span>
+            <details>
+              <summary>답변 보기</summary>
+              <div>찬물에 단독 손세탁을 권장합니다. 표백제 사용은 피해주세요.</div>
+            </details>
+          </li>
+          <li><span class="faq-q">Q.</span><span class="faq-a">사이즈 교환이 가능한가요?</span>
+            <details>
+              <summary>답변 보기</summary>
+              <div>상품 수령 후 7일 이내 1회에 한해 교환 가능합니다.</div>
+            </details>
+          </li>
+        </ul>
+      </section>
+      <section class="product-contact">
+        <h2>고객센터</h2>
+        <address>
+          문의: <a href="tel:0212345678">02-1234-5678</a> (평일 10:00~17:00)
+        </address>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <p>20251243임서현 20251246김나우 20251291장주연 20252361김지연</p>
+    <p>&copy; 2025 LUMINA. All rights reserved. Unauthorized use or reproduction prohibited.</p>
+  </footer>
+</body>
+</html>
